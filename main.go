@@ -34,7 +34,6 @@ func main() {
 			log.Fatal(err)
 		}
 		log.Println("client connected")
-
-		serve(conn)
+		go serve(conn)
 	}
 }
