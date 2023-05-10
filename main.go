@@ -10,10 +10,19 @@ func worker(id int, jobs chan net.Conn) {
 	for {
 		conn := <-jobs
 
+		// Set a deadline for the incoming connection
+		if err := conn.SetDeadline(time.Now().Add(10 * time.Second)); err != nil {
+			log.Printf("worker %d: failed to set connection deadline: %s", id, err)
+			conn.Close()
+			continue
+		}
+
 		buf := make([]byte, 1024)
 		_, err := conn.Read(buf)
 		if err != nil {
-			log.Fatal(err)
+			log.Printf("worker %d: failed to read from connection: %s", id, err)
+			conn.Close()
+			continue
 		}
 
 		log.Printf("worker %d: processing the request", id)
