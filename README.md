@@ -31,6 +31,6 @@
 
     ## Improvements: 
         * Limiting the number of threads.
-        * Added thread pool to save on thread creation time
-        * Connection timeout
+        * Added thread pool to save on thread creation time.
+        * Added Connection timeout.
         * TCP backlog queue configuration (OS LEVEL).
