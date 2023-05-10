@@ -11,5 +11,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Hello World", listener)
+	conn, err := listener.Accept()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Hello World", conn)
 }
